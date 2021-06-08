@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF00FF00</color>
+    <color name="colorSecondary">#FFFF0000</color>
+    <color name="colorSecondaryVariant">#FFFF5555</color>
+    <color name="colorPrimaryVariant">#FF55FF55</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray1">#FFc4c4c4</color>
+    <color name="bottomBarBackground">#212121</color>
+    <color name="windowBackground">#222222</color>
+    <color name="windowStroke">#BDBDBD</color>
+    <color name="backGroundGray">#303030</color>
+    <color name="transparentBackground">#AA222222</color>
+    <color name="transparent">#00000000</color>
+</resources>

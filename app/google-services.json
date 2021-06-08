@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "640195740444",
+    "project_id": "mymoards",
+    "storage_bucket": "mymoards.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640195740444:android:2ae169b667070c91c030d9",
+        "android_client_info": {
+          "package_name": "com.example.myboards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640195740444-dsom21f47po8ndqhb8kv24m7ls3oegmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACN7aAq7TOjz69WnuczAMiJFE6NNUAMqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640195740444-dsom21f47po8ndqhb8kv24m7ls3oegmo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

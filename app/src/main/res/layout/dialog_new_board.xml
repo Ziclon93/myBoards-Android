@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="boardName"
+            type="String" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/window_background"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_medium"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="@dimen/padding_medium"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/board_name_label"
+                style="@style/Widget.MyBoards.Window.DialogSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Board Name:" />
+
+            <TextView
+                android:id="@+id/titleError"
+                style="@style/Widget.MyBoards.Window.error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text=""
+                android:visibility="gone" />
+        </LinearLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/newBoardTitleTextField"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/padding_medium"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="@dimen/padding_medium"
+                android:background="@drawable/textfield_background"
+                android:maxLines="1"
+                android:text="@{boardName}" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_medium"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="@dimen/padding_medium"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tags_label"
+                    style="@style/Widget.MyBoards.Window.DialogSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tags:" />
+
+                <TextView
+                    android:id="@+id/tagsError"
+                    style="@style/Widget.MyBoards.Window.error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text=""
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/padding_medium"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="@dimen/padding_medium"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputEditText
+
+                    android:id="@+id/newBoardTagTextField"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textfield_background"
+                    android:text="@{boardName}" />
+
+                <ImageButton
+                    android:id="@+id/newTagBtn"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:src="@drawable/ic_add_tag_btn" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:layout_marginStart="@dimen/padding_medium"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="@dimen/padding_medium"
+                android:background="@drawable/tags_background">
+
+                <TextView
+                    android:id="@+id/tagTextView"
+                    style="@style/Widget.MyBoards.TagText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:maxLines="2"
+                    android:text="" />
+            </RelativeLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_medium"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="@dimen/padding_medium">
+
+                <TextView
+                    android:id="@+id/board_icon_title"
+                    style="@style/Widget.MyBoards.Window.DialogSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Board Icon:"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="150dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/transparent"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/board_icon_title">
+
+                    <ImageView
+                        android:id="@+id/newBoardPreview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/ic_default_board_icon" />
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/new_board_icon_camera_btn"
+                        style="@style/Widget.MyBoards.Button.Check"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:text="Camera"
+                        app:icon="@drawable/ic_camera_icon" />
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/newBoardPreviewGalleryBtn"
+                        style="@style/Widget.MyBoards.Button.Check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Gallery"
+                        app:icon="@drawable/ic_gallery_icon" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/postNewBoardBtn"
+                style="@style/Widget.MyBoards.Button.Check.NewBoard"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/padding_medium"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="@dimen/padding_medium"
+                android:layout_marginBottom="10dp"
+                android:text="New Board"
+                app:icon="@drawable/ic_check_button"
+                app:iconSize="40dp" />
+
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

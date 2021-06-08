@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/exploreFragment">
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="com.example.myboards.ui.explore.ExploreFragment"
+        android:label="fragment_explore"
+        tools:layout="@layout/fragment_explore">
+        <action
+            android:id="@+id/action_exploreFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left" />
+        <action
+            android:id="@+id/action_exploreFragment_to_followedFragment"
+            app:destination="@id/followedFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left" />
+        <action
+            android:id="@+id/action_exploreFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left" />
+        <action
+            android:id="@+id/action_exploreFragment_to_boardDetailFragment"
+            app:destination="@id/boardDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.myboards.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_exploreFragment"
+            app:destination="@id/exploreFragment"
+            app:enterAnim="@anim/slide_from_left"
+            app:exitAnim="@anim/slide_to_right" />
+        <action
+            android:id="@+id/action_searchFragment_to_followedFragment"
+            app:destination="@id/followedFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left" />
+        <action
+            android:id="@+id/action_searchFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left" />
+        <action
+            android:id="@+id/action_searchFragment_to_boardDetailFragment"
+            app:destination="@id/boardDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/followedFragment"
+        android:name="com.example.myboards.ui.followed.FollowedFragment"
+        android:label="fragment_followed"
+        tools:layout="@layout/fragment_followed">
+        <action
+            android:id="@+id/action_followedFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/slide_from_left"
+            app:exitAnim="@anim/slide_to_right" />
+        <action
+            android:id="@+id/action_followedFragment_to_exploreFragment"
+            app:destination="@id/exploreFragment"
+            app:enterAnim="@anim/slide_from_left"
+            app:exitAnim="@anim/slide_to_right" />
+        <action
+            android:id="@+id/action_followedFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left" />
+        <action
+            android:id="@+id/action_followedFragment_to_boardDetailFragment"
+            app:destination="@id/boardDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.myboards.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile">
+
+        <argument
+            android:name="profile"
+            app:argType="com.example.myboards.domain.model.Profile"
+            app:nullable="true" />
+
+        <action
+            android:id="@+id/action_profileFragment_to_followedFragment"
+            app:destination="@id/followedFragment"
+            app:enterAnim="@anim/slide_from_left"
+            app:exitAnim="@anim/slide_to_right" />
+        <action
+            android:id="@+id/action_profileFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/slide_from_left"
+            app:exitAnim="@anim/slide_to_right" />
+        <action
+            android:id="@+id/action_profileFragment_to_exploreFragment"
+            app:destination="@id/exploreFragment"
+            app:enterAnim="@anim/slide_from_left"
+            app:exitAnim="@anim/slide_to_right" />
+        <action
+            android:id="@+id/action_profileFragment_to_boardDetailFragment"
+            app:destination="@id/boardDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/boardDetailFragment"
+        android:name="com.example.myboards.ui.boardDetail.BoardDetailFragment"
+        android:label="fragment_board_detail"
+        tools:layout="@layout/fragment_board_detail">
+        <argument
+            android:name="boardId"
+            app:argType="integer" />
+    </fragment>
+
+</navigation>

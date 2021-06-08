@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/explore"
+        android:icon="@drawable/ic_explore_icon"
+        android:title="Explore"
+        />
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search_icon"
+        android:title="Search"
+        />
+
+    <item
+        android:id="@+id/followed"
+        android:icon="@drawable/ic_friends_icon"
+        android:title="Followed"
+        />
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_account_icon"
+        android:title="Profile"
+        />
+</menu>

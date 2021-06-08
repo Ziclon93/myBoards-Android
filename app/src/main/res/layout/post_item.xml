@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.myboards.ui.core.postPoolView.PostItem xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".ui.core.postPoolView.PostItem">
+
+    <ImageView
+        android:id="@+id/post_image"
+        android:layout_width="140dp"
+        android:layout_height="110dp"
+        android:src="@drawable/ic_default_board_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</com.example.myboards.ui.core.postPoolView.PostItem>

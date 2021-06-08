@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.MyBoards.Window.Title" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.MyBoards.Window.SubTitle" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.MyBoards.Valoration" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Widget.MyBoards.Window.DialogSubtitle" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.MyBoards.Window.error" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorSecondary</item>
+    </style>
+
+    <style name="Widget.MyBoards.TagText" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.MyBoards.Window.UserName" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.MyBoards.Button.Register" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="backgroundTint">@color/transparent</item>
+        <item name="shapeAppearanceOverlay">@style/ButtonShape</item>
+        <item name="rippleColor">@color/gray1</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:textColor">@color/gray1</item>
+        <item name="strokeColor">@color/gray1</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="Widget.MyBoards.Button.Check" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/transparent</item>
+        <item name="shapeAppearanceOverlay">@style/ButtonShape</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:textColor">@color/button_color</item>
+        <item name="iconTint">@color/button_color</item>
+        <item name="strokeColor">@color/button_color</item>
+        <item name="rippleColor">@color/button_color</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="Widget.MyBoards.Button.Check.NewBoard" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/transparent</item>
+        <item name="shapeAppearanceOverlay">@style/ButtonShape</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:textColor">@color/button_color</item>
+        <item name="android:textSize">24sp</item>
+        <item name="iconTint">@color/button_color</item>
+        <item name="strokeColor">@color/button_color</item>
+        <item name="rippleColor">@color/button_color</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+
+    <style name="Widget.MyBoards.Button.NewBoard" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/gray1</item>
+        <item name="shapeAppearanceOverlay">@style/ButtonShape</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:textColor">@color/black_button_color</item>
+        <item name="iconTint">@color/black_button_color</item>
+        <item name="strokeColor">@color/black_button_color</item>
+        <item name="rippleColor">@color/black_button_color</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="Widget.MyBoards.Button.NewPost" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/transparent</item>
+        <item name="shapeAppearanceOverlay">@style/ButtonShape</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:textColor">@color/button_color</item>
+        <item name="iconTint">@color/button_color</item>
+        <item name="strokeColor">@color/gray1</item>
+        <item name="rippleColor">@color/button_color</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="ButtonShape" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSize">15dp</item>
+    </style>
+
+</resources>

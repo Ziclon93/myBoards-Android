@@ -1,8 +1,6 @@
 package com.example.myboards.ui.profile
 
-import android.content.Context
 import android.graphics.Bitmap
-import android.view.View
 import android.widget.ImageView
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*

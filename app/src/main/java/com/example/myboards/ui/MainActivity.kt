@@ -83,7 +83,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.search -> {
                     when (bottomBar.selectedItemId) {
                         R.id.explore -> {
-                            navigatorAction(R.id.action_exploreFragment_to_searchFragment)
+                            if (findNavController(R.id.main_nav_host_fragment).currentDestination?.id!! == R.id.boardDetailFragment) {
+                                navigatorAction(R.id.action_boardDetailFragment_to_searchFragment)
+                            } else {
+                                navigatorAction(R.id.action_exploreFragment_to_searchFragment)
+                            }
                             true
                         }
                         R.id.followed -> {
@@ -101,7 +105,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.followed -> {
                     when (bottomBar.selectedItemId) {
                         R.id.explore -> {
-                            navigatorAction(R.id.action_exploreFragment_to_followedFragment)
+                            if (findNavController(R.id.main_nav_host_fragment).currentDestination?.id!! == R.id.boardDetailFragment) {
+                                navigatorAction(R.id.action_boardDetailFragment_to_followedFragment)
+                            } else {
+                                navigatorAction(R.id.action_exploreFragment_to_followedFragment)
+                            }
                             true
                         }
                         R.id.search -> {
@@ -119,7 +127,12 @@ class MainActivity : AppCompatActivity() {
                 R.id.profile -> {
                     when (bottomBar.selectedItemId) {
                         R.id.explore -> {
-                            navigatorAction(R.id.action_exploreFragment_to_profileFragment)
+
+                            if (findNavController(R.id.main_nav_host_fragment).currentDestination?.id!! == R.id.boardDetailFragment) {
+                                navigatorAction(R.id.action_boardDetailFragment_to_profileFragment)
+                            } else {
+                                navigatorAction(R.id.action_exploreFragment_to_profileFragment)
+                            }
                             true
                         }
                         R.id.search -> {
@@ -187,10 +200,10 @@ class MainActivity : AppCompatActivity() {
             )
 
 
-        if (fragmentId == R.id.profileFragment) {
-            (currentFragment as ProfileFragment).onBackButton()
-        } else {
+        if (fragmentId == R.id.profileFragment || fragmentId == R.id.exploreFragment || fragmentId == R.id.searchFragment || fragmentId == R.id.followedFragment) {
             moveTaskToBack(true)
+        } else {
+            super.onBackPressed()
         }
     }
 }

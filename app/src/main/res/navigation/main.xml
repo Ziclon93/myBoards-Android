@@ -114,6 +114,18 @@
         <argument
             android:name="boardId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_boardDetailFragment_to_followedFragment"
+            app:destination="@id/followedFragment" />
+        <action
+            android:id="@+id/action_boardDetailFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_boardDetailFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_boardDetailFragment_to_exploreFragment2"
+            app:destination="@id/exploreFragment" />
     </fragment>
 
 </navigation>

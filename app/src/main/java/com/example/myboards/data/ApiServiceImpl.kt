@@ -3,10 +3,6 @@ package com.example.myboards.data
 import com.example.myboards.data.model.request.*
 import com.example.myboards.domain.api.ApiService
 import com.example.myboards.domain.model.*
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 /**
  * Implementation of [ApiService] that uses retrofit to perform api calls
@@ -105,6 +101,24 @@ class ApiServiceImpl(
             )
         }
         return modelMapper.toPost(response)
+    }
+
+    override suspend fun likePost(postId: Int) {
+        executor.execute {
+            endpoints.likePost(
+                authServiceImpl.getAuthCredentials().userKey,
+                LikePostRequest(postId),
+            )
+        }
+    }
+
+    override suspend fun dislikePost(postId: Int) {
+        executor.execute {
+            endpoints.dislikePost(
+                authServiceImpl.getAuthCredentials().userKey,
+                DislikePostRequest(postId),
+            )
+        }
     }
 
 

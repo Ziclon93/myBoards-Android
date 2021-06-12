@@ -16,5 +16,7 @@ data class PostResponse(
     @SerialName("resourceUrl")
     val resourceUrl: String,
     @SerialName("valoration")
-    val valoration: Float
+    val valoration: Float,
+    @SerialName("userLikeCode")
+    val userLikeCode: Int
 )

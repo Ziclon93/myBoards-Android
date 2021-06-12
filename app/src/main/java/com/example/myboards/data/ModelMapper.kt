@@ -18,13 +18,10 @@ class ModelMapper {
     fun toBoard(response: BoardResponse): Board {
         val postList: MutableList<Post> = mutableListOf()
 
-        println("_________--______")
         //println(response.posts == null)
         response.postList.forEach {
             postList.add(toPost(it))
-            println(it)
         }
-        println("_________--______")
         return Board(
             response.id,
             response.title,
@@ -59,5 +56,6 @@ class ModelMapper {
             response.rotation,
             response.resourceUrl,
             response.valoration,
+            response.userLikeCode,
         )
 }

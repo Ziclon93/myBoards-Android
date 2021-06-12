@@ -1,4 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="design_bottom_navigation_height" tools:override="true">70dp</dimen>
+    <dimen name="pageMargin">15dp</dimen>
+    <dimen name="pagerOffset">25dp</dimen>
+    <dimen name="pageMarginAndOffset">100dp</dimen>
 </resources>

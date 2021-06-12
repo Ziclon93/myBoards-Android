@@ -52,4 +52,16 @@ interface ApiEndpoints {
         @Body body: PostPostRequest
     ): Response<PostResponse>
 
+    @POST("board/post/like")
+    suspend fun likePost(
+        @Header("api-key") apiKey: String,
+        @Body body: LikePostRequest
+    ):Response<Unit>
+
+    @POST("board/post/dislike")
+    suspend fun dislikePost(
+        @Header("api-key") apiKey: String,
+        @Body body: DislikePostRequest
+    ):Response<Unit>
+
 }

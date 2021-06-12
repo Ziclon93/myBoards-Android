@@ -11,4 +11,5 @@ data class Post(
     val rotation: Int,
     val resourceUrl: String,
     val valoration: Float,
+    var userLikeCode: Int,
 ) : Parcelable

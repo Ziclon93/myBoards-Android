@@ -9,7 +9,9 @@ import com.example.myboards.data.FireBaseStorageServiceImpl
 import com.example.myboards.data.GlideServiceImpl
 import com.example.myboards.domain.model.Board
 import com.example.myboards.domain.model.Image
+import com.example.myboards.domain.usecase.DislikePostUseCase
 import com.example.myboards.domain.usecase.GetBoardUseCase
+import com.example.myboards.domain.usecase.LikePostUseCase
 import com.example.myboards.domain.usecase.PostPostUseCase
 import com.example.myboards.support.DelayedResult
 import com.example.myboards.support.Event
@@ -24,6 +26,8 @@ class BoardDetailViewModel @ViewModelInject constructor(
     private val apiService: ApiServiceImpl,
     private val getBoardUseCase: GetBoardUseCase,
     private val postPostUseCase: PostPostUseCase,
+    private val likePostUseCase: LikePostUseCase,
+    private val dislikePostUseCase: DislikePostUseCase,
     val firebaseStorageServiceImpl: FireBaseStorageServiceImpl,
     val glideServiceImpl: GlideServiceImpl,
 ) : ViewModel() {
@@ -124,6 +128,17 @@ class BoardDetailViewModel @ViewModelInject constructor(
     fun loadPostResourceImage(url: String, imageView: ImageView) {
         viewModelScope.launch {
             glideServiceImpl.showSquareFromFireBaseUriCenterCrop(url, imageView)
+        }
+    }
+
+    fun likePost(postId: Int) {
+        viewModelScope.launch {
+            likePostUseCase.invoke(postId)
+        }
+    }
+    fun dislikePost(postId: Int) {
+        viewModelScope.launch {
+            dislikePostUseCase.invoke(postId)
         }
     }
 

@@ -28,13 +28,13 @@ interface ApiEndpoints {
         @Body body: UpdateProfileIconUrlRequest
     ): Response<ProfileResponse>
 
-    @POST("createBoard")
+    @POST("board")
     suspend fun postBoard(
         @Header("api-key") apiKey: String,
         @Body body: PostBoardRequest
     ): Response<BoardResponse>
 
-    @GET("getBoard")
+    @GET("board")
     suspend fun getBoard(
         @Header("api-key") apiKey: String,
         @Query("boardId") boardId: Int?
@@ -56,12 +56,12 @@ interface ApiEndpoints {
     suspend fun likePost(
         @Header("api-key") apiKey: String,
         @Body body: LikePostRequest
-    ):Response<Unit>
+    ): Response<Unit>
 
     @POST("board/post/dislike")
     suspend fun dislikePost(
         @Header("api-key") apiKey: String,
         @Body body: DislikePostRequest
-    ):Response<Unit>
+    ): Response<Unit>
 
 }

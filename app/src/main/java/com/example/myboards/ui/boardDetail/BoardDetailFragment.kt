@@ -67,6 +67,19 @@ class BoardDetailFragment : BindingAppFragment<FragmentBoardDetailBinding>() {
                 postPreviewIsVisible = false
             }
 
+            vm.state.iconUrl.observe(this@BoardDetailFragment, {
+                if (it.isNotEmpty()) {
+                    vm.loadPostResourceImage(
+                        it,
+                        boardIcon
+                    )
+                } else {
+                    boardIcon.setImageResource(R.drawable.ic_default_board_icon)
+                }
+                boardIconSpinner.visibility = View.GONE
+            })
+
+
             vm.state.boardResult.observe(this@BoardDetailFragment, EventObserver {
                 if (it is DelayedResult.Success) {
                     postContainer.removeAllViews()

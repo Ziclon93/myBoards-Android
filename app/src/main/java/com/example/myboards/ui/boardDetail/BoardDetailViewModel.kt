@@ -135,10 +135,23 @@ class BoardDetailViewModel @ViewModelInject constructor(
         viewModelScope.launch {
             likePostUseCase.invoke(postId)
         }
+        board.value = Optional.of(state.id!!)
+        viewModelScope.launch {
+            boardResponse.asFlow().collect {
+                boardResult.value = Event(it)
+            }
+        }
     }
+
     fun dislikePost(postId: Int) {
         viewModelScope.launch {
             dislikePostUseCase.invoke(postId)
+        }
+        board.value = Optional.of(state.id!!)
+        viewModelScope.launch {
+            boardResponse.asFlow().collect {
+                boardResult.value = Event(it)
+            }
         }
     }
 

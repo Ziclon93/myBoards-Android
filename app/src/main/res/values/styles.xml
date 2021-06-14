@@ -9,8 +9,14 @@
 
     <style name="Widget.MyBoards.Window.SubTitle" parent="Widget.MaterialComponents.TextView">
         <item name="fontFamily">@font/montserrat_semi_bold</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.MyBoards.Window.Board.Tags" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/gray1</item>
     </style>
 
     <style name="Widget.MyBoards.Valoration" parent="Widget.MaterialComponents.TextView">

@@ -75,6 +75,18 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.2" />
+
+                <TextView
+                    android:id="@+id/board_tags"
+                    style="@style/Widget.MyBoards.Window.Board.Tags"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@{viewModel.state.tagsString}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/board_title"
                     app:layout_constraintVertical_bias="0.25" />
 
                 <LinearLayout
@@ -94,7 +106,7 @@
                         style="@style/Widget.MyBoards.Valoration"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
+                        android:layout_marginStart="40dp"
                         android:text="@{viewModel.state.valoration.toString()}" />
 
                 </LinearLayout>

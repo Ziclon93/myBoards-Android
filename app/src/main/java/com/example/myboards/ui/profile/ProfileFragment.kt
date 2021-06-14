@@ -61,9 +61,14 @@ class ProfileFragment : BindingAppFragment<FragmentProfileBinding>() {
                 newBoardDialogShown = true
             }
 
+            deleteTagsButton.setOnClickListener {
+                vm.state.tagsList.value.clear()
+                vm.state.tagsText.value = ""
+            }
+
             newTagBtn.setOnClickListener {
                 if (!tagTextFieldDisabled) {
-                    if (vm.state.tagsList.value.size <= 5) {
+                    if (vm.state.tagsList.value.size <= 4) {
                         vm.addTag(newBoardTagTextField.text.toString())
                         newBoardTagTextField.text?.clear()
                         tagTextView.text = vm.state.tagsText.value
@@ -162,6 +167,7 @@ class ProfileFragment : BindingAppFragment<FragmentProfileBinding>() {
                 })
         }
     }
+
     fun onBackButton() {
         println("HOLAAAAAAA")
     }

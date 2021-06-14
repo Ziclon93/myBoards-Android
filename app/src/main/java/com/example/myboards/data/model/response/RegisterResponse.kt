@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RegisterResponse(
-    @SerialName("success")
-    val success: Boolean? = null
+    @SerialName("apiKey")
+    val apiKey: String
 )

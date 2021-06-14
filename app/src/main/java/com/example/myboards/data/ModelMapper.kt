@@ -12,7 +12,7 @@ class ModelMapper {
 
     fun toRegister(response: RegisterResponse) =
         Register(
-            response.success!!
+            response.apiKey
         )
 
     fun toBoard(response: BoardResponse): Board {

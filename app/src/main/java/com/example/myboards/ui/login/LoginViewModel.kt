@@ -27,7 +27,7 @@ class LoginViewModel @ViewModelInject constructor(
         login
             .asFlow()
             .transformLatest {
-                emit(DelayedResult.loading<Login>())
+                emit(DelayedResult.loading())
                 emit(loginUseCase.invoke(state.username.value, state.password.value).toDelayed())
             }
             .asLiveData()

@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.example.myboards.data.ApiServiceImpl
 import com.example.myboards.data.AuthServiceImpl
+import com.example.myboards.domain.model.Register
 import com.example.myboards.domain.usecase.RegisterUseCase
 import com.example.myboards.support.DelayedResult
 import com.example.myboards.support.Event
@@ -20,14 +21,14 @@ class RegisterViewModel @ViewModelInject constructor(
 
     private val registerUseCase: RegisterUseCase = RegisterUseCase(apiService)
 
-    private val registerResult = MutableLiveData<Event<DelayedResult<Unit>>>()
+    private val registerResult = MutableLiveData<Event<DelayedResult<Register>>>()
     private val register = MutableLiveData<Unit>()
 
-    private val registerResponse: LiveData<DelayedResult<Unit>> =
+    private val registerResponse: LiveData<DelayedResult<Register>> =
         register
             .asFlow()
             .transformLatest {
-                emit(DelayedResult.loading<Unit>())
+                emit(DelayedResult.loading())
                 emit(
                     registerUseCase.invoke(
                         state.email.value,
@@ -59,7 +60,7 @@ class RegisterViewModel @ViewModelInject constructor(
         val email: NeverNullMutableLiveData<String>,
         val username: NeverNullMutableLiveData<String>,
         val password: NeverNullMutableLiveData<String>,
-        val registerResult: MutableLiveData<Event<DelayedResult<Unit>>>,
+        val registerResult: MutableLiveData<Event<DelayedResult<Register>>>,
         val isLoading: LiveData<Boolean>,
         val error: MutableLiveData<String?>
     )

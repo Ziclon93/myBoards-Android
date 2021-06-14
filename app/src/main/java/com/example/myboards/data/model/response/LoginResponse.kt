@@ -6,7 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class LoginResponse(
     @SerialName("apiKey")
-    val apiKey: String,
-    @SerialName("success")
-    val success: Boolean? = null
+    val apiKey: String
 )

@@ -1,4 +1,4 @@
-package com.example.myboards.ui.core.carousel
+package com.example.myboards.ui.core.carousel.boardCarousel
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.myboards.domain.model.Board

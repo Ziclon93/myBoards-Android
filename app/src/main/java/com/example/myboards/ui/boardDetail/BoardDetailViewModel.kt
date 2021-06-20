@@ -126,8 +126,10 @@ class BoardDetailViewModel @ViewModelInject constructor(
     }
 
     fun loadPostResourceImage(url: String, imageView: ImageView) {
-        viewModelScope.launch {
-            glideServiceImpl.showSquareFromFireBaseUriCenterCrop(url, imageView)
+        if (url.isNotBlank()) {
+            viewModelScope.launch {
+                glideServiceImpl.showSquareFromFireBaseUriCenterCrop(url, imageView)
+            }
         }
     }
 

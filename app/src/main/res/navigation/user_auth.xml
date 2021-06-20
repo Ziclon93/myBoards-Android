@@ -23,13 +23,19 @@
         android:id="@+id/registerFragment"
         android:name="com.example.myboards.ui.register.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_from_left"
+            app:exitAnim="@anim/slide_to_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/launchingFragment"
         android:name="com.example.myboards.ui.launching.LaunchingFragment"
         android:label="fragment_launching"
-        tools:layout="@layout/fragment_launching" >
+        tools:layout="@layout/fragment_launching">
         <action
             android:id="@+id/action_launchingFragment_to_loginFragment"
             app:destination="@id/loginFragment" />

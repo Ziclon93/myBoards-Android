@@ -131,6 +131,15 @@ class ApiServiceImpl(
         return modelMapper.toBoardList(response)
     }
 
+    override suspend fun getProfileBoards(): List<Board> {
+        val response = executor.execute {
+            endpoints.getProfileBoards(
+                authServiceImpl.getAuthCredentials().userKey,
+            )
+        }
+        return modelMapper.toBoardList(response)
+    }
+
 
     override suspend fun updateProfileIconUrl(iconUrl: String) {
 

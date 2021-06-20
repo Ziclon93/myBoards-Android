@@ -45,6 +45,10 @@ interface ApiEndpoints {
         @Header("api-key") apiKey: String,
     ): Response<List<BoardResponse>>
 
+    @GET("profile/boards")
+    suspend fun getProfileBoards(
+        @Header("api-key") apiKey: String,
+    ): Response<List<BoardResponse>>
 
     @POST("board/post")
     suspend fun postPost(

@@ -1,4 +1,4 @@
-package com.example.myboards.ui.core.carousel
+package com.example.myboards.ui.core.carousel.boardCarousel
 
 import android.view.LayoutInflater
 import android.view.View

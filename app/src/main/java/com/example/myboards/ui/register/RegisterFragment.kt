@@ -43,7 +43,7 @@ class RegisterFragment : BindingAppFragment<FragmentRegisterBinding>() {
 
                     vm.authServiceImpl.setAuthCredentials(
                         AuthCredentials(
-                            userKey =  it.value.apiKey,
+                            userKey = it.value.apiKey,
                             username = vm.state.username.value,
                             password = vm.state.password.value
                         )
@@ -53,8 +53,6 @@ class RegisterFragment : BindingAppFragment<FragmentRegisterBinding>() {
             })
 
         }
-
-
     }
 
 

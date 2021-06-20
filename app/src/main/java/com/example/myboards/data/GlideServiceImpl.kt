@@ -8,15 +8,21 @@ import android.graphics.Matrix
 import android.media.ExifInterface
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.signature.MediaStoreSignature
+import com.bumptech.glide.signature.ObjectKey
 import com.example.myboards.R
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageException
 import java.io.ByteArrayOutputStream
+import java.lang.Exception
 
 
 class GlideServiceImpl(
@@ -60,21 +66,26 @@ class GlideServiceImpl(
 
     fun showSquareFromFireBaseUriCenterCrop(uri: String, imageView: ImageView) {
 
-        fireBaseStorageServiceImpl.launchAnonymously {
-            if (it) {
+        fireBaseStorageServiceImpl.launchAnonymously { success ->
+            if (success) {
                 val storageRef = FirebaseStorage.getInstance()
-                val imageRef = storageRef.getReference(uri)
-
-
-                Glide.with(context)
-                    .load(imageRef)
-                    .error(showSquareFromFireBaseUriCenterCrop(uri, imageView))
-                    .placeholder(R.drawable.ic_default_board_icon)
-                    .transform(MultiTransformation(CenterCrop(), RoundedCorners(20)))
-                    .into(imageView)
+                storageRef.getReference(uri).downloadUrl.addOnSuccessListener {
+                    Glide.with(context)
+                        .load(it)
+                        .placeholder(R.drawable.ic_default_board_icon)
+                        .transform(MultiTransformation(CenterCrop(), RoundedCorners(20)))
+                        .into(imageView)
+                }.addOnFailureListener {
+                    Log.e("Glide", it.message!!)
+                    showSquareFromFireBaseUriCenterCrop(uri, imageView)
+                }
             }
 
         }
+    }
+
+    fun clearImage(imageView: ImageView) {
+        Glide.with(context).clear(imageView)
     }
 
 

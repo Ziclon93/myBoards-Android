@@ -124,7 +124,7 @@
             android:id="@+id/action_boardDetailFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
         <action
-            android:id="@+id/action_boardDetailFragment_to_exploreFragment2"
+            android:id="@+id/action_boardDetailFragment_to_exploreFragment"
             app:destination="@id/exploreFragment" />
     </fragment>
 

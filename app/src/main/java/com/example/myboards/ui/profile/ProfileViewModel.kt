@@ -11,27 +11,29 @@ import com.example.myboards.data.GlideServiceImpl
 import com.example.myboards.domain.model.Board
 import com.example.myboards.domain.model.Image
 import com.example.myboards.domain.model.Profile
-import com.example.myboards.domain.usecase.GetProfileUseCase
-import com.example.myboards.domain.usecase.PostBoardUseCase
-import com.example.myboards.domain.usecase.UpdateProfileIconUrlUseCase
+import com.example.myboards.domain.usecase.*
 import com.example.myboards.support.DelayedResult
 import com.example.myboards.support.Event
 import com.example.myboards.support.NeverNullMutableLiveData
 import com.example.myboards.support.toDelayed
+import com.example.myboards.ui.MainActivity
+import com.example.myboards.ui.explore.ExploreFragmentDirections
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.transformLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class ProfileViewModel @ViewModelInject constructor(
     private val apiService: ApiServiceImpl,
+    private val getProfileBoardsUseCase: GetProfileBoardsUseCase,
+    private val postBoardUseCase: PostBoardUseCase,
+    private val getProfileUseCase: GetProfileUseCase,
     val authServiceImpl: AuthServiceImpl,
     val firebaseStorageServiceImpl: FireBaseStorageServiceImpl,
     val glideServiceImpl: GlideServiceImpl,
 ) : ViewModel() {
-
-    private val getProfileUseCase: GetProfileUseCase = GetProfileUseCase(apiService)
-    private val postBoardUseCase: PostBoardUseCase = PostBoardUseCase(apiService)
-
 
     //Profile management
     private val profileResult: MutableLiveData<Event<DelayedResult<Profile>>> = MutableLiveData()
@@ -73,6 +75,28 @@ class ProfileViewModel @ViewModelInject constructor(
             }
         }.asLiveData()
 
+    //User Board management
+    private val boardListRequest = NeverNullMutableLiveData(Unit)
+    private val boardResponse =
+        boardListRequest
+            .asFlow()
+            .transformLatest {
+                emit(DelayedResult.loading())
+                emit(getProfileBoardsUseCase.invoke().toDelayed())
+            }
+            .asLiveData()
+
+    private val boardList =
+        boardResponse
+            .asFlow()
+            .transformLatest {
+                println(it)
+                if (it is DelayedResult.Success) {
+                    emit(it.value)
+                }
+            }
+            .asLiveData()
+
     //New Board management
     private val newBoardResult: MutableLiveData<Event<DelayedResult<Board>>> = MutableLiveData()
     private val newBoard = NeverNullMutableLiveData(Unit)
@@ -100,19 +124,43 @@ class ProfileViewModel @ViewModelInject constructor(
         glideServiceImpl.showFromBitmap(bitmap, imageView)
     }
 
-    fun postNewBoard(title: String, iconUrl: String) {
-        state.newBoarTitle.value = title
-        state.newBoardIconUrl.value = iconUrl
-        newBoard.value = Unit
-        viewModelScope.launch {
-            newBoardResponse.asFlow().collect {
-                newBoardResult.value = Event(it)
+    fun postNewBoard(title: String, image: Image?) {
+        image?.let {
+            firebaseStorageServiceImpl.updateImageAnonymously(
+                image.bitmap,
+                image.path
+            ) {
+                state.newBoarTitle.value = title
+                state.newBoardIconUrl.value = image.path
+
+                newBoard.value = Unit
+
+                viewModelScope.launch {
+                    newBoardResponse.asFlow().collect {
+                        newBoardResult.value = Event(it)
+                    }
+                }
+            }
+        } ?: run {
+            state.newBoarTitle.value = title
+            state.newBoardIconUrl.value = ""
+
+            newBoard.value = Unit
+
+            viewModelScope.launch {
+                newBoardResponse.asFlow().collect {
+                    newBoardResult.value = Event(it)
+                }
             }
         }
-
     }
 
-    fun updateUrl(image: Image) {
+    fun requestBoardList() {
+        boardListRequest.value = Unit
+    }
+
+    fun updateProfileImage(image: Image) {
+
         firebaseStorageServiceImpl.updateImageAnonymously(
             image.bitmap,
             image.path
@@ -147,6 +195,7 @@ class ProfileViewModel @ViewModelInject constructor(
         val newBoarTitle: NeverNullMutableLiveData<String>,
         val newBoardIconUrl: NeverNullMutableLiveData<String>,
         val newBoardResult: MutableLiveData<Event<DelayedResult<Board>>>,
+        val boardList: LiveData<List<Board>>,
     )
 
     init {
@@ -166,7 +215,8 @@ class ProfileViewModel @ViewModelInject constructor(
             NeverNullMutableLiveData(""),
             NeverNullMutableLiveData(""),
             NeverNullMutableLiveData(""),
-            newBoardResult
+            newBoardResult,
+            boardList
         )
 
     }

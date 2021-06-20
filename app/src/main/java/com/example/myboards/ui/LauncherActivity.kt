@@ -24,8 +24,24 @@ class LauncherActivity : AppCompatActivity() {
         findNavController(R.id.nav_host_fragment).navigate(R.id.action_launchingFragment_to_loginFragment)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        toLogin()
-        super.onActivityResult(requestCode, resultCode, data)
+    override fun onResume() {
+            val fragmentId: Int =
+                findNavController(R.id.nav_host_fragment).currentDestination?.id!!
+            if (fragmentId == R.id.launchingFragment) {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.action_launchingFragment_to_loginFragment)
+            } else if (fragmentId == R.id.registerFragment) {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.action_registerFragment_to_loginFragment)
+            }
+        super.onResume()
+    }
+
+    override fun onBackPressed() {
+        val fragmentId: Int =
+            findNavController(R.id.nav_host_fragment).currentDestination?.id!!
+        if (fragmentId == R.id.registerFragment) {
+            findNavController(R.id.nav_host_fragment).navigate(R.id.action_registerFragment_to_loginFragment)
+        } else {
+            super.onBackPressed()
+        }
     }
 }

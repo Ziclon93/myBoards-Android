@@ -17,6 +17,9 @@ import com.example.myboards.data.GlideServiceImpl
 import com.example.myboards.domain.model.Image
 import com.example.myboards.support.DelayedResult
 import com.example.myboards.support.Event
+import com.example.myboards.ui.boardDetail.BoardDetailFragment
+import com.example.myboards.ui.explore.ExploreFragment
+import com.example.myboards.ui.profile.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.MainScope
@@ -67,7 +70,12 @@ class MainActivity : AppCompatActivity() {
                             true
                         }
                         R.id.profile -> {
-                            navigatorAction(R.id.action_profileFragment_to_exploreFragment)
+
+                            if (findNavController(R.id.main_nav_host_fragment).currentDestination?.id!! == R.id.boardDetailFragment) {
+                                navigatorAction(R.id.action_boardDetailFragment_to_exploreFragment)
+                            } else {
+                                navigatorAction(R.id.action_profileFragment_to_exploreFragment)
+                            }
                             true
                         }
                         else -> false
@@ -89,7 +97,11 @@ class MainActivity : AppCompatActivity() {
                             true
                         }
                         R.id.profile -> {
-                            navigatorAction(R.id.action_profileFragment_to_searchFragment)
+                            if (findNavController(R.id.main_nav_host_fragment).currentDestination?.id!! == R.id.boardDetailFragment) {
+                                navigatorAction(R.id.action_boardDetailFragment_to_searchFragment)
+                            } else {
+                                navigatorAction(R.id.action_profileFragment_to_searchFragment)
+                            }
                             true
                         }
                         else -> false
@@ -111,7 +123,11 @@ class MainActivity : AppCompatActivity() {
                             true
                         }
                         R.id.profile -> {
-                            navigatorAction(R.id.action_profileFragment_to_followedFragment)
+                            if (findNavController(R.id.main_nav_host_fragment).currentDestination?.id!! == R.id.boardDetailFragment) {
+                                navigatorAction(R.id.action_boardDetailFragment_to_followedFragment)
+                            } else {
+                                navigatorAction(R.id.action_profileFragment_to_followedFragment)
+                            }
                             true
                         }
                         else -> false
@@ -185,19 +201,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val fragmentId: Int =
-            findNavController(R.id.main_nav_host_fragment).currentDestination?.id!!
+        when (findNavController(R.id.main_nav_host_fragment).currentDestination?.id!!) {
+            R.id.exploreFragment -> {
+                (supportFragmentManager.findFragmentById(R.id.main_nav_host_fragment)?.childFragmentManager?.fragments?.get(
+                    0
+                ) as ExploreFragment).onBackPressed()
+            }
+            R.id.boardDetailFragment -> {
+                if (!(supportFragmentManager.findFragmentById(R.id.main_nav_host_fragment)?.childFragmentManager?.fragments?.get(
+                        0
+                    ) as BoardDetailFragment).onBackPressed()
+                ) {
+                    super.onBackPressed()
+                }
 
-        val currentFragment =
-            supportFragmentManager.findFragmentById(R.id.main_nav_host_fragment)?.childFragmentManager?.fragments?.get(
-                0
-            )
-
-
-        if (fragmentId == R.id.profileFragment || fragmentId == R.id.exploreFragment || fragmentId == R.id.searchFragment || fragmentId == R.id.followedFragment) {
-            moveTaskToBack(true)
-        } else {
-            super.onBackPressed()
+            }
+            R.id.profileFragment -> {
+                (supportFragmentManager.findFragmentById(R.id.main_nav_host_fragment)?.childFragmentManager?.fragments?.get(
+                    0
+                ) as ProfileFragment).onBackPressed()
+            }
+            R.id.searchFragment -> moveAppToBackground()
+            R.id.followedFragment -> moveAppToBackground()
+            else -> super.onBackPressed()
         }
     }
+
+    fun moveAppToBackground() = moveTaskToBack(true)
+
 }

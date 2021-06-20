@@ -9,20 +9,76 @@
         <variable
             name="viewModel"
             type="com.example.myboards.ui.explore.ExploreViewModel" />
+
+        <variable
+            name="newBoardDialogShown"
+            type="Boolean" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical">
+    <TextView
+        android:layout_marginStart="10dp"
+        style="@style/Widget.MyBoards.Window.SubTitle"
+        android:layout_width="wrap_content"
+        android:text="All Boards"
+        android:layout_height="wrap_content"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/board_carousel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            app:layoutManager="LinearLayoutManager"/>
+            app:layoutManager="LinearLayoutManager" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
+</LinearLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/newBoardButton"
+            style="@style/Widget.MyBoards.Button.NewBoard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:stateListAnimator="@null"
+            android:text="BOARD"
+            app:icon="@drawable/ic_black_append"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias=".99" />
+        <RelativeLayout
+            android:id="@+id/dialog_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparentBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="@{newBoardDialogShown ? View.VISIBLE: View.GONE, default= gone}" />
+        <include
+            android:id="@+id/new_board_dialog"
+            layout="@layout/dialog_new_board"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{newBoardDialogShown ? View.VISIBLE: View.GONE, default= gone}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </layout>

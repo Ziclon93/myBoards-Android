@@ -32,6 +32,7 @@ interface ApiService {
     suspend fun likePost(postId: Int)
     suspend fun dislikePost(postId: Int)
     suspend fun getAllBoards(): List<Board>
+    suspend fun getProfileBoards(): List<Board>
     suspend fun getProfile(): Profile
     suspend fun updateProfileIconUrl(iconUrl: String)
 }

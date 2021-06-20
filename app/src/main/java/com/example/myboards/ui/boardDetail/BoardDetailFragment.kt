@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myboards.R
 import com.example.myboards.databinding.FragmentBoardDetailBinding
+import com.example.myboards.databinding.FragmentExploreBinding
 import com.example.myboards.domain.model.Image
 import com.example.myboards.support.DelayedResult
 import com.example.myboards.support.EventObserver
@@ -32,6 +33,7 @@ class BoardDetailFragment : BindingAppFragment<FragmentBoardDetailBinding>() {
     private var expectedImage: ImageExpected = ImageExpected.NONE
     private var currentPostImage: Image? = null
     private val vm: BoardDetailViewModel by viewModels()
+    private var binding: FragmentBoardDetailBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         vm.setBoard(arguments?.getInt("boardId")!!)
@@ -68,7 +70,7 @@ class BoardDetailFragment : BindingAppFragment<FragmentBoardDetailBinding>() {
             }
 
             vm.state.iconUrl.observe(this@BoardDetailFragment, {
-                if (it.isNotEmpty()) {
+                if (it.isNotBlank()) {
                     vm.loadPostResourceImage(
                         it,
                         boardIcon
@@ -96,6 +98,7 @@ class BoardDetailFragment : BindingAppFragment<FragmentBoardDetailBinding>() {
                             post.resourceUrl,
                             postView.findViewById(R.id.post_image)
                         )
+
                         postView.setConstraints(postContainer)
 
                         val postList = it.value.postList
@@ -149,8 +152,8 @@ class BoardDetailFragment : BindingAppFragment<FragmentBoardDetailBinding>() {
                         expectedImage = ImageExpected.NONE
                     }
                 })
-
         }
+        this.binding = binding
     }
 
     fun ViewPager2.setShowSideItems(pageMarginPx: Int, offsetPx: Int) {
@@ -171,5 +174,25 @@ class BoardDetailFragment : BindingAppFragment<FragmentBoardDetailBinding>() {
                 page.translationY = offset
             }
         }
+    }
+
+    fun onBackPressed(): Boolean {
+        binding?.let {
+            it.postPreviewIsVisible?.let { _ ->
+                if (it.postPreviewIsVisible!!) {
+                    it.postPreviewIsVisible = false
+                    return true
+                }
+            }
+            it.postListDetailIsVisible?.let { _ ->
+                if (it.postListDetailIsVisible!!) {
+                    it.postListDetailIsVisible = false
+                    return true
+                }
+            }
+            return false
+        }
+
+        return false
     }
 }

@@ -10,8 +10,10 @@ import com.example.myboards.data.FireBaseStorageServiceImpl
 import com.example.myboards.data.GlideServiceImpl
 import com.example.myboards.domain.model.Board
 import com.example.myboards.domain.model.Image
+import com.example.myboards.domain.model.TagBoards
 import com.example.myboards.domain.usecase.GetAllBoardsUseCase
 import com.example.myboards.domain.usecase.GetBoardUseCase
+import com.example.myboards.domain.usecase.GetTagsBoardsUseCase
 import com.example.myboards.domain.usecase.PostBoardUseCase
 import com.example.myboards.support.DelayedResult
 import com.example.myboards.support.Event
@@ -25,6 +27,7 @@ import java.util.*
 class ExploreViewModel @ViewModelInject constructor(
     private val apiService: ApiServiceImpl,
     private val getAllBoardsUseCase: GetAllBoardsUseCase,
+    private val getAllTagsBoardsUseCase: GetTagsBoardsUseCase,
     private val postBoardUseCase: PostBoardUseCase,
     private val firebaseStorageServiceImpl: FireBaseStorageServiceImpl,
     val glideServiceImpl: GlideServiceImpl,
@@ -46,7 +49,27 @@ class ExploreViewModel @ViewModelInject constructor(
         boardResponse
             .asFlow()
             .transformLatest {
-                println(it)
+                if (it is DelayedResult.Success) {
+                    emit(it.value)
+                }
+            }
+            .asLiveData()
+
+    //Get most used tags boards list
+    private val tagBoardsListRequest = NeverNullMutableLiveData(Unit)
+    private val tagBoardsResponse =
+        tagBoardsListRequest
+            .asFlow()
+            .transformLatest {
+                emit(DelayedResult.loading())
+                emit(getAllTagsBoardsUseCase.invoke().toDelayed())
+            }
+            .asLiveData()
+
+    private val tagBoardsList =
+        tagBoardsResponse
+            .asFlow()
+            .transformLatest {
                 if (it is DelayedResult.Success) {
                     emit(it.value)
                 }
@@ -73,6 +96,10 @@ class ExploreViewModel @ViewModelInject constructor(
     //Functions
     fun requestBoardList() {
         boardListRequest.value = Unit
+    }
+
+    fun requestTagBoardsList() {
+        tagBoardsListRequest.value = Unit
     }
 
     fun addTag(tag: String) {
@@ -124,6 +151,7 @@ class ExploreViewModel @ViewModelInject constructor(
 
     data class State(
         val boardList: LiveData<List<Board>>,
+        val tagBoardsList: LiveData<List<TagBoards>>,
         val tagsList: NeverNullMutableLiveData<MutableList<String>>,
         val tagsText: NeverNullMutableLiveData<String>,
         val newBoarTitle: NeverNullMutableLiveData<String>,
@@ -134,6 +162,7 @@ class ExploreViewModel @ViewModelInject constructor(
     init {
         state = State(
             boardList,
+            tagBoardsList,
             NeverNullMutableLiveData(mutableListOf()),
             NeverNullMutableLiveData(""),
             NeverNullMutableLiveData(""),

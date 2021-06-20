@@ -35,6 +35,7 @@ class ExploreFragment : BindingAppFragment<FragmentExploreBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         vm.requestBoardList()
+        vm.requestTagBoardsList()
 
         super.onCreate(savedInstanceState)
     }
@@ -56,6 +57,32 @@ class ExploreFragment : BindingAppFragment<FragmentExploreBinding>() {
             vm.state.boardList.observe(this@ExploreFragment, {
                 it?.let {
                     boardsAdapter.submitList(it as MutableList<Board>)
+                }
+            })
+
+            val tagBoardsAdapter1 =
+                BoardsAdapter(vm.glideServiceImpl) { board -> adapterOnClick(board) }
+            tagBoardsCarousel1.adapter = tagBoardsAdapter1
+
+            vm.state.tagBoardsList.observe(this@ExploreFragment, {
+                it?.let {
+                    if (it.isNotEmpty()) {
+                        tagBoardsTitle1.text = "#" + it[0].tagName
+                        tagBoardsAdapter1.submitList(it[0].boardList as MutableList<Board>)
+                    }
+                }
+            })
+
+            val tagBoardsAdapter2 =
+                BoardsAdapter(vm.glideServiceImpl) { board -> adapterOnClick(board) }
+            tagBoardsCarousel2.adapter = tagBoardsAdapter2
+
+            vm.state.tagBoardsList.observe(this@ExploreFragment, {
+                it?.let {
+                    if (it.size >= 2) {
+                        tagBoardsTitle2.text = "#" + it[1].tagName
+                        tagBoardsAdapter2.submitList(it[1].boardList as MutableList<Board>)
+                    }
                 }
             })
 
@@ -105,6 +132,7 @@ class ExploreFragment : BindingAppFragment<FragmentExploreBinding>() {
                                 )
                             (activity as MainActivity).navigatorAction(action)
                             vm.requestBoardList()
+                            vm.requestTagBoardsList()
                             lastBoardIdShowed = it.value.id
                         }
                     } ?: run {
@@ -112,6 +140,7 @@ class ExploreFragment : BindingAppFragment<FragmentExploreBinding>() {
                             ExploreFragmentDirections.actionExploreFragmentToBoardDetailFragment(it.value.id)
                         (activity as MainActivity).navigatorAction(action)
                         vm.requestBoardList()
+                        vm.requestTagBoardsList()
                         lastBoardIdShowed = it.value.id
                     }
                 }

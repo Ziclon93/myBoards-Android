@@ -131,6 +131,15 @@ class ApiServiceImpl(
         return modelMapper.toBoardList(response)
     }
 
+    override suspend fun getBoardsListOfMostUsedTags(): List<TagBoards> {
+        val response = executor.execute {
+            endpoints.getBoardsListOfMostUsedTags(
+                authServiceImpl.getAuthCredentials().userKey,
+            )
+        }
+        return modelMapper.toMostUsedTagsBoards(response)
+    }
+
     override suspend fun getProfileBoards(): List<Board> {
         val response = executor.execute {
             endpoints.getProfileBoards(

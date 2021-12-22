@@ -2,9 +2,7 @@ package com.example.myboards.data
 
 import android.content.SharedPreferences
 import com.example.myboards.data.model.auth.AuthCredentials
-import com.example.myboards.domain.api.ApiService
 import com.example.myboards.domain.api.AuthService
-import com.google.firebase.auth.EmailAuthProvider
 
 
 /**

@@ -1,7 +1,6 @@
 package com.example.myboards.domain.provider
 
 import android.content.Context
-import com.example.myboards.R
 import com.example.myboards.data.*
 import dagger.Module
 import dagger.Provides

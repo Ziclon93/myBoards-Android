@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.myboards.R
 import com.example.myboards.databinding.FragmentExploreBinding
@@ -17,7 +16,6 @@ import com.example.myboards.ui.MainActivity
 import com.example.myboards.ui.core.BindingAppFragment
 import com.example.myboards.ui.core.ImageExpected
 import com.example.myboards.ui.core.carousel.boardCarousel.BoardsAdapter
-import com.example.myboards.ui.profile.ProfileFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.dialog_new_board.*
 

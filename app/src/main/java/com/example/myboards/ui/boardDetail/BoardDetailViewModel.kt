@@ -4,7 +4,6 @@ import android.graphics.Bitmap
 import android.widget.ImageView
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import com.example.myboards.data.ApiServiceImpl
 import com.example.myboards.data.FireBaseStorageServiceImpl
 import com.example.myboards.data.GlideServiceImpl
 import com.example.myboards.domain.model.Board
@@ -17,13 +16,13 @@ import com.example.myboards.support.DelayedResult
 import com.example.myboards.support.Event
 import com.example.myboards.support.NeverNullMutableLiveData
 import com.example.myboards.support.toDelayed
-import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.transformLatest
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.util.*
 
 class BoardDetailViewModel @ViewModelInject constructor(
-    private val apiService: ApiServiceImpl,
     private val getBoardUseCase: GetBoardUseCase,
     private val postPostUseCase: PostPostUseCase,
     private val likePostUseCase: LikePostUseCase,

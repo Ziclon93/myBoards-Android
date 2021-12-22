@@ -1,8 +1,6 @@
 package com.example.myboards.domain
 
 import com.example.myboards.support.Result
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 abstract class UseCase<R>() {
 

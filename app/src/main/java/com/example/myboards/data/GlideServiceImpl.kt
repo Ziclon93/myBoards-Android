@@ -12,17 +12,12 @@ import android.util.Log
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.MultiTransformation
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.signature.MediaStoreSignature
-import com.bumptech.glide.signature.ObjectKey
 import com.example.myboards.R
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageException
 import java.io.ByteArrayOutputStream
-import java.lang.Exception
 
 
 class GlideServiceImpl(

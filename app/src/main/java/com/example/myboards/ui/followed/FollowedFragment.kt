@@ -3,9 +3,6 @@ package com.example.myboards.ui.followed
 import android.os.Bundle
 import android.view.ViewGroup
 import com.example.myboards.databinding.FragmentFollowedBinding
-import com.example.myboards.databinding.FragmentLaunchingBinding
-import com.example.myboards.support.EventObserver
-import com.example.myboards.ui.LauncherActivity
 import com.example.myboards.ui.core.BindingAppFragment
 
 class FollowedFragment : BindingAppFragment<FragmentFollowedBinding>() {

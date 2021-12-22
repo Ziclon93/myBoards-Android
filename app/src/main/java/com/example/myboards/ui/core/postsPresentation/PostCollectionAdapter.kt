@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModel
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.myboards.data.GlideServiceImpl
 import com.example.myboards.domain.model.Post
 import com.example.myboards.ui.boardDetail.BoardDetailViewModel
 

@@ -5,14 +5,12 @@ import android.widget.ImageView
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.example.myboards.data.ApiServiceImpl
-import com.example.myboards.data.AuthServiceImpl
 import com.example.myboards.data.FireBaseStorageServiceImpl
 import com.example.myboards.data.GlideServiceImpl
 import com.example.myboards.domain.model.Board
 import com.example.myboards.domain.model.Image
 import com.example.myboards.domain.model.TagBoards
 import com.example.myboards.domain.usecase.GetAllBoardsUseCase
-import com.example.myboards.domain.usecase.GetBoardUseCase
 import com.example.myboards.domain.usecase.GetTagsBoardsUseCase
 import com.example.myboards.domain.usecase.PostBoardUseCase
 import com.example.myboards.support.DelayedResult
@@ -22,7 +20,6 @@ import com.example.myboards.support.toDelayed
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.transformLatest
 import kotlinx.coroutines.launch
-import java.util.*
 
 class ExploreViewModel @ViewModelInject constructor(
     private val apiService: ApiServiceImpl,
@@ -147,7 +144,15 @@ class ExploreViewModel @ViewModelInject constructor(
         glideServiceImpl.showFromBitmap(bitmap, imageView)
     }
 
-    val state: State
+    val state: State = State(
+        boardList,
+        tagBoardsList,
+        NeverNullMutableLiveData(mutableListOf()),
+        NeverNullMutableLiveData(""),
+        NeverNullMutableLiveData(""),
+        NeverNullMutableLiveData(""),
+        newBoardResult,
+    )
 
     data class State(
         val boardList: LiveData<List<Board>>,
@@ -158,17 +163,5 @@ class ExploreViewModel @ViewModelInject constructor(
         val newBoardIconUrl: NeverNullMutableLiveData<String>,
         val newBoardResult: MutableLiveData<Event<DelayedResult<Board>>>,
     )
-
-    init {
-        state = State(
-            boardList,
-            tagBoardsList,
-            NeverNullMutableLiveData(mutableListOf()),
-            NeverNullMutableLiveData(""),
-            NeverNullMutableLiveData(""),
-            NeverNullMutableLiveData(""),
-            newBoardResult,
-        )
-    }
 
 }

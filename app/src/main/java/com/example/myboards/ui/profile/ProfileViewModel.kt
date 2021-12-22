@@ -11,19 +11,17 @@ import com.example.myboards.data.GlideServiceImpl
 import com.example.myboards.domain.model.Board
 import com.example.myboards.domain.model.Image
 import com.example.myboards.domain.model.Profile
-import com.example.myboards.domain.usecase.*
+import com.example.myboards.domain.usecase.GetProfileBoardsUseCase
+import com.example.myboards.domain.usecase.GetProfileUseCase
+import com.example.myboards.domain.usecase.PostBoardUseCase
+import com.example.myboards.domain.usecase.UpdateProfileIconUrlUseCase
 import com.example.myboards.support.DelayedResult
 import com.example.myboards.support.Event
 import com.example.myboards.support.NeverNullMutableLiveData
 import com.example.myboards.support.toDelayed
-import com.example.myboards.ui.MainActivity
-import com.example.myboards.ui.explore.ExploreFragmentDirections
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.transformLatest
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 class ProfileViewModel @ViewModelInject constructor(
     private val apiService: ApiServiceImpl,

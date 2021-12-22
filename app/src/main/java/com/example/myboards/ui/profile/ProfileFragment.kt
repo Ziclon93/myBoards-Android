@@ -7,21 +7,19 @@ import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import com.example.myboards.R
-import com.example.myboards.databinding.FragmentExploreBinding
 import com.example.myboards.databinding.FragmentProfileBinding
 import com.example.myboards.domain.model.Board
 import com.example.myboards.domain.model.Image
 import com.example.myboards.support.DelayedResult
 import com.example.myboards.support.EventObserver
-import com.example.myboards.ui.core.ImageExpected
 import com.example.myboards.ui.MainActivity
 import com.example.myboards.ui.core.BindingAppFragment
+import com.example.myboards.ui.core.ImageExpected
 import com.example.myboards.ui.core.carousel.verticalBoardCarousel.VerticalBoardsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_new_board.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
-
 
 @AndroidEntryPoint
 class ProfileFragment : BindingAppFragment<FragmentProfileBinding>() {

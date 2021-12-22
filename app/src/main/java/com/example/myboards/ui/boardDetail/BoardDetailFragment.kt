@@ -2,16 +2,13 @@ package com.example.myboards.ui.boardDetail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
-import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myboards.R
 import com.example.myboards.databinding.FragmentBoardDetailBinding
-import com.example.myboards.databinding.FragmentExploreBinding
 import com.example.myboards.domain.model.Image
 import com.example.myboards.support.DelayedResult
 import com.example.myboards.support.EventObserver

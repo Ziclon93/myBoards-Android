@@ -1,9 +1,7 @@
 package com.example.myboards.data
 
 import io.reactivex.internal.util.NotificationLite.getError
-import retrofit2.HttpException
 import retrofit2.Response
-import java.io.IOException
 
 class ApiRequestExecutor() {
 

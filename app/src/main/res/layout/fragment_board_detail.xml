@@ -5,7 +5,6 @@
     tools:context=".BoardDetailFragment">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.myboards.ui.boardDetail.BoardDetailViewModel" />

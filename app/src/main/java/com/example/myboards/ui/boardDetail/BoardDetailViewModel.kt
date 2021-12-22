@@ -2,7 +2,6 @@ package com.example.myboards.ui.boardDetail
 
 import android.graphics.Bitmap
 import android.widget.ImageView
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.example.myboards.data.FireBaseStorageServiceImpl
 import com.example.myboards.data.GlideServiceImpl
@@ -16,13 +15,16 @@ import com.example.myboards.support.DelayedResult
 import com.example.myboards.support.Event
 import com.example.myboards.support.NeverNullMutableLiveData
 import com.example.myboards.support.toDelayed
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.transformLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.util.*
+import javax.inject.Inject
 
-class BoardDetailViewModel @ViewModelInject constructor(
+@HiltViewModel
+class BoardDetailViewModel @Inject constructor(
     private val getBoardUseCase: GetBoardUseCase,
     private val postPostUseCase: PostPostUseCase,
     private val likePostUseCase: LikePostUseCase,

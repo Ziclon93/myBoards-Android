@@ -153,7 +153,7 @@ class BoardDetailFragment : BindingAppFragment<FragmentBoardDetailBinding>() {
         this.binding = binding
     }
 
-    fun ViewPager2.setShowSideItems(pageMarginPx: Int, offsetPx: Int) {
+    private fun ViewPager2.setShowSideItems(pageMarginPx: Int, offsetPx: Int) {
         clipToPadding = false
         clipChildren = false
         offscreenPageLimit = 3

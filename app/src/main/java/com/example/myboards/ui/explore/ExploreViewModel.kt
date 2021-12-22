@@ -2,9 +2,7 @@ package com.example.myboards.ui.explore
 
 import android.graphics.Bitmap
 import android.widget.ImageView
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import com.example.myboards.data.ApiServiceImpl
 import com.example.myboards.data.FireBaseStorageServiceImpl
 import com.example.myboards.data.GlideServiceImpl
 import com.example.myboards.domain.model.Board
@@ -17,12 +15,14 @@ import com.example.myboards.support.DelayedResult
 import com.example.myboards.support.Event
 import com.example.myboards.support.NeverNullMutableLiveData
 import com.example.myboards.support.toDelayed
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.transformLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ExploreViewModel @ViewModelInject constructor(
-    private val apiService: ApiServiceImpl,
+@HiltViewModel
+class ExploreViewModel @Inject constructor(
     private val getAllBoardsUseCase: GetAllBoardsUseCase,
     private val getAllTagsBoardsUseCase: GetTagsBoardsUseCase,
     private val postBoardUseCase: PostBoardUseCase,

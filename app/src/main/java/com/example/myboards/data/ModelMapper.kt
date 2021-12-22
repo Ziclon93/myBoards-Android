@@ -18,7 +18,7 @@ class ModelMapper {
     fun toBoard(response: BoardResponse): Board {
         val postList: MutableList<Post> = mutableListOf()
 
-        response.postList?.let {
+        response.postList.let {
             response.postList.forEach {
                 postList.add(toPost(it))
             }

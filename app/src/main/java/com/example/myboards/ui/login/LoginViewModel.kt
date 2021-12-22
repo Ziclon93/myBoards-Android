@@ -1,6 +1,5 @@
 package com.example.myboards.ui.login
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.example.myboards.data.ApiServiceImpl
 import com.example.myboards.data.AuthServiceImpl
@@ -10,11 +9,14 @@ import com.example.myboards.support.DelayedResult
 import com.example.myboards.support.Event
 import com.example.myboards.support.NeverNullMutableLiveData
 import com.example.myboards.support.toDelayed
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.transformLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel @ViewModelInject constructor(
+@HiltViewModel
+class LoginViewModel @Inject constructor(
     private val apiService: ApiServiceImpl,
     val authServiceImpl: AuthServiceImpl
 ) : ViewModel() {

@@ -1,12 +1,16 @@
 package com.example.myboards.ui.launching
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.myboards.data.AuthServiceImpl
 import com.example.myboards.support.Event
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LaunchingViewModel @ViewModelInject constructor(
+@HiltViewModel
+class LaunchingViewModel @Inject constructor(
     private val authServiceImpl: AuthServiceImpl
 ) : ViewModel() {
 
